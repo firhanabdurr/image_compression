@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Image Compression</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+            }
+
+            header {
+                background-color: #333;
+                color: #fff;
+                padding: 20px;
+            }
+
+            h1 {
+                margin: 0;
+            }
+
+            form {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                margin-top: 50px;
+            }
+
+            label {
+                font-size: 18px;
+                margin-bottom: 10px;
+            }
+
+            input[type="file"] {
+                margin-bottom: 20px;
+            }
+
+            button[type="submit"] {
+                padding: 10px 20px;
+                background-color: #333;
+                color: #fff;
+                border: none;
+                border-radius: 5px;
+                font-size: 16px;
+                cursor: pointer;
+            }
+
+            .image-container {
+                margin-top: 50px;
+                display: flex;
+                justify-content: center;
+            }
+
+            img {
+                max-width: 100%;
+                height: auto;
+            }
+        </style>
+    </head>
+
+    <body>
+        <header>
+            <h1>Image Compression</h1>
+        </header>
+
+        <div class="image-container">
+            {% if compressed_image %}
+                <img src="data:image/jpeg;base64,{{ compressed_image }}" alt="Compressed Image">
+            {% endif %}
+        </div>
+        
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <label for="image">Select an image to compress:</label>
+            <input type="file" name="image" id="image">
+            <button type="submit">Compress</button>
+        </form>
+    </body>
+
+</html>
